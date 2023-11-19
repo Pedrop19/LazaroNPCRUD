@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=Mali&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f2f2f2;
+    font-family: 'Mali', cursive;
+    background: url(../IMG/bg.gif) no-repeat center center fixed;
+    background-size: cover;
+    color: #000;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    margin: 10px;
+}
+
+.index-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container .card {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    border-radius: 10px;
+    color: #000;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-container .card:hover {
+    transform: perspective(1000px) rotateY(20deg) translate(0px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    backdrop-filter: grayscale(0.5) blur(10px);
+}
+
+.form-container .card h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.form-container h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 1000;
+}
+
+.table-container {
+    margin: 0 auto;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.table-container h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+
+.table-container table {
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 10px;
+    width: 600px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+.table-container table:hover {
+    backdrop-filter: grayscale(0.5) blur(10px);
+    transform: scale(1.1);
+}
+
+.table-container button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.table-container table th,
+td {
+    font-size: 1rem;
+    padding: 10px;
+    background-color: #fee6e3;
+}
+
+.table-container table th {
+    border: 1px solid #000;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+button {
+    align-items: center;
+    background-color: #fee6e3;
+    border: 2px solid #111;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #111;
+    cursor: pointer;
+    display: flex;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    height: 48px;
+    justify-content: center;
+    line-height: 24px;
+    max-width: 100%;
+    padding: 0 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-top: 10px;
+}
+
+button:after {
+    background-color: #111;
+    border-radius: 8px;
+    content: "";
+    display: block;
+    height: 48px;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    top: -2px;
+    transform: translate(8px, 8px);
+    transition: transform .2s ease-out;
+    z-index: -1;
+}
+
+button:hover:after {
+    transform: translate(0, 0);
+}
+
+button:active {
+    background-color: #ffdeda;
+    outline: 0;
+}
+
+button:hover {
+    outline: 0;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.form-container button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.form-container .input-labels{
+    backdrop-filter: blur(10px);
+    padding: 10px;
+}
+
+.error-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+.error{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ff3333;
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.error img{
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin: 10px;
+}
+
+input[type="text"], input[type="date"]{
+    border: 2px solid #111;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 600;
+    color: #111;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="text"]:focus, input[type="date"]:focus{
+    outline: none;
+    border: 2px solid #ff4d4d;
+}
+
+input[type="text"]::placeholder, input[type="date"]::placeholder{
+    color: #111;
+    font-weight: 600;
+}
+
+.final-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.final-container .text-container{
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.final-container img{
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin: 10px;
+}
+
+.confirmacion{
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+}
+
+.confirmacion img{
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 0 10px #000;
+}
