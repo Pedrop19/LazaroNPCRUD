@@ -4,7 +4,6 @@
  */
 package es.albarregas.controllers;
 
-import java.beans.Beans;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
