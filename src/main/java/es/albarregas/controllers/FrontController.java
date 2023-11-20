@@ -68,13 +68,16 @@ public class FrontController extends HttpServlet {
                 case "crear":
                     url = "JSP/Forms/crearForm.jsp";
                     break;
+                // Caso ver
                 case "ver":
                     try {
                         sentencia = conexion.createStatement();
                         resultado = sentencia.executeQuery(sql);
+                        // Si no hay aves en la base de datos
                         if (!resultado.next()) {
                             Utils.getError(request, response, "No hay aves en la base de datos", "JSP/Errores/error.jsp");
                         } else {
+                            // Recorremos el resultado y lo guardamos en un objeto ave
                             do {
                                 ave = new Ave();
                                 ave.setAnilla(resultado.getString("anilla"));
@@ -102,9 +105,11 @@ public class FrontController extends HttpServlet {
                     try {
                         sentencia = conexion.createStatement();
                         resultado = sentencia.executeQuery(sql);
+                        // Si no hay aves en la base de datos
                         if (!resultado.next()) {
                             Utils.getError(request, response, "No hay aves en la base de datos", "JSP/Errores/error.jsp");
                         } else {
+                            // Recorremos el resultado y lo guardamos en un objeto ave
                             do {
                                 ave = new Ave();
                                 ave.setAnilla(resultado.getString("anilla"));
@@ -128,13 +133,16 @@ public class FrontController extends HttpServlet {
                         }
                     }
                     break;
+                // Caso borrar
                 case "borrar":
                     try {
                         sentencia = conexion.createStatement();
                         resultado = sentencia.executeQuery(sql);
+                        // Si no hay aves en la base de datos
                         if (!resultado.next()) {
                             Utils.getError(request, response, "No hay aves en la base de datos", "JSP/Errores/error.jsp");
                         } else {
+                            // Recorremos el resultado y lo guardamos en un objeto ave
                             do {
                                 ave = new Ave();
                                 ave.setAnilla(resultado.getString("anilla"));
