@@ -4,7 +4,9 @@
  */
 package es.albarregas.controllers;
 
+import java.beans.Beans;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +20,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import es.albarregas.beans.Ave;
 import es.albarregas.conections.Conexion;
@@ -64,6 +68,8 @@ public class ModificarController extends HttpServlet {
         PreparedStatement preparada = null;
         conexion = Conexion.getConnection();
         Ave ave = new Ave();
+        
+
 
         try {
             switch (boton) {
@@ -98,7 +104,8 @@ public class ModificarController extends HttpServlet {
                     break;
                 // Caso de aceptar
                 case "aceptar":
-                    ave = (Ave) request.getSession().getAttribute("ave");
+                    Ave aveSesion = (Ave) request.getSession().getAttribute("ave");
+                    BeanUtils.populate(ave, request.getParameterMap());
                     Map<String, String[]> parametros = request.getParameterMap();
                     Iterator<String> it = parametros.keySet().iterator();
                     Boolean errBoolean = false;
@@ -129,9 +136,7 @@ public class ModificarController extends HttpServlet {
                     }
 
                     // Comprobamos que se ha modificado algun campo
-                    if (ave.getEspecie().equals(request.getParameter("especie"))
-                            && ave.getLugar().equals(request.getParameter("lugar"))
-                            && ave.getFecha().equals(java.sql.Date.valueOf(request.getParameter("fecha")))) {
+                    if (ave.equals(aveSesion)) {
                         Utils.getError(request, response, "No se ha modificado ningun campo",
                                 "JSP/Forms/modificarForm.jsp");
                         errBoolean = true;
@@ -169,6 +174,12 @@ public class ModificarController extends HttpServlet {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (IllegalAccessException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        } catch (InvocationTargetException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
         } finally {
             Conexion.closeConexion();
         }
