@@ -3,6 +3,7 @@
 * {
     margin: 0;
     padding: 0;
+    
 }
 
 body {
@@ -12,6 +13,7 @@ body {
     background-size: cover;
     color: #000;
     transition: all 0.3s ease-in-out;
+    overflow: hidden;
 }
 
 .form-container {
