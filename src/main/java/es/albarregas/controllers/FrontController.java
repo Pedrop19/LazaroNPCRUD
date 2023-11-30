@@ -62,8 +62,7 @@ public class FrontController extends HttpServlet {
 
         Ave ave;
         LinkedList<Ave> aves = new LinkedList<Ave>();
-            conexion = Conexion.getConnection();
-            
+           
             switch (boton) {
                 case "crear":
                     url = "JSP/Forms/crearForm.jsp";
@@ -71,6 +70,7 @@ public class FrontController extends HttpServlet {
                 // Caso ver
                 case "ver":
                     try {
+                        conexion = Conexion.getConnection();
                         sentencia = conexion.createStatement();
                         resultado = sentencia.executeQuery(sql);
                         // Si no hay aves en la base de datos
@@ -94,48 +94,14 @@ public class FrontController extends HttpServlet {
                         e.printStackTrace();
                     } finally {
                         Conexion.closeConexion();
-                        try {
-                            resultado.close();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
                     }
                     break;
                 case "modificar":
-                    try {
-                        sentencia = conexion.createStatement();
-                        resultado = sentencia.executeQuery(sql);
-                        // Si no hay aves en la base de datos
-                        if (!resultado.next()) {
-                            Utils.getError(request, response, "No hay aves en la base de datos", "JSP/Errores/error.jsp");
-                        } else {
-                            // Recorremos el resultado y lo guardamos en un objeto ave
-                            do {
-                                ave = new Ave();
-                                ave.setAnilla(resultado.getString("anilla"));
-                                ave.setEspecie(resultado.getString(2));
-                                ave.setFecha(resultado.getDate("fecha"));
-                                ave.setLugar(resultado.getString("lugar"));
-                                aves.add(ave);
-                            } while (resultado.next());
-                        
-                            request.getSession().setAttribute("aves", aves);
-                            url = "JSP/Vistas/modificar.jsp";
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    } finally {
-                        Conexion.closeConexion();
-                        try {
-                            resultado.close();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    break;
+               
                 // Caso borrar
                 case "borrar":
                     try {
+                        conexion = Conexion.getConnection();
                         sentencia = conexion.createStatement();
                         resultado = sentencia.executeQuery(sql);
                         // Si no hay aves en la base de datos
@@ -153,17 +119,16 @@ public class FrontController extends HttpServlet {
                             } while (resultado.next());
                         
                             request.getSession().setAttribute("aves", aves);
-                            url = "JSP/Vistas/borrar.jsp";
+                            if (boton.equals("modificar")) {
+                                url = "JSP/Vistas/modificar.jsp";
+                            } else {
+                                url = "JSP/Vistas/borrar.jsp";
+                            }
                         }
                     } catch (SQLException e) {
                         e.printStackTrace();
                     } finally {
                         Conexion.closeConexion();
-                        try {
-                            resultado.close();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
                     }
                     break;
             }

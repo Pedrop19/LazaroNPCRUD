@@ -162,7 +162,6 @@ public class ModificarController extends HttpServlet {
                             e.printStackTrace();
                         } finally {
                             Conexion.closeConexion();
-                            preparada.close();
                         }
 
                     }
